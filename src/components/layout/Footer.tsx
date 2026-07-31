@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { PERSONAL_INFO } from '@/constants/portfolio';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons';
-import { ArrowUp, Mail, Phone, MapPin, Copy, Check, Terminal } from 'lucide-react';
+import { ArrowUp, Mail, Phone, MapPin, Copy, Check } from 'lucide-react';
 
 export function Footer() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -49,12 +49,6 @@ export function Footer() {
             <p className="font-sans text-sm text-white/80 leading-relaxed font-medium max-w-md">
               Crafting government-grade emergency platforms, AI-powered analytics tools, and native mobile applications with 100% type safety and high performance.
             </p>
-
-            {/* Live System Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/10 border-2 border-white/20 font-mono text-xs font-bold text-white neo-shadow-premium">
-              <span className="w-2.5 h-2.5 bg-[#8BFFB0] rounded-full animate-ping" />
-              <span>SYSTEM STATUS: ONLINE • VERCEL EDGE</span>
-            </div>
           </div>
 
           {/* Quick Links Column */}
