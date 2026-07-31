@@ -4,9 +4,9 @@ export const PERSONAL_INFO = {
   name: 'RUDRAKSHA C. JADHAV',
   shortName: 'RJ.',
   title: 'SOFTWARE ENGINEER',
-  headline: 'Final-year B.Tech Computer Engineering student with hands-on experience crafting responsive, interaction-rich UIs using React.js, Next.js 15, and TypeScript.',
-  aboutBioLight: 'Final-year B.Tech Computer Engineering student at Parul Institute of Engineering & Technology, Vadodara. Proficient in translating Figma designs to production-grade code, integrating REST APIs, and implementing DOM-level animations. Comfortable owning the complete frontend layer from component architecture to deployment on Vercel.',
-  aboutBioDark: 'Experienced in building government-grade emergency disaster response platforms (DisasterLink) and AI carbon footprint intelligence tools (CarbonLens). Hold a Diploma in Mechanical Engineering from Puranmal Lahoti Government Polytechnic and a B.Tech in Computer Science & Engineering.',
+  headline: 'Final-year B.Tech Computer Engineering student who builds complete products end-to-end – frontend, backend, data layer, and deployment – across React, Next.js, Node.js, and Java/Android.',
+  aboutBioLight: 'Final-year B.Tech Computer Engineering student at Parul Institute of Engineering & Technology, Vadodara. Work spans an emergency-response dashboard (DisasterLink), an AI-integrated analytics platform (CarbonLens), and a native Android app (Terralife), backed by two Generative AI certifications (Google Cloud, via Coursera) and self-directed Data Structures & Algorithms study (Java).',
+  aboutBioDark: 'Experienced in architecting role-based dashboards, modeling MongoDB schemas, building native Java Android apps with ML Kit & CameraX, and integrating third-party AI/LLM APIs. Hold a Diploma in Mechanical Engineering from Puranmal Lahoti Government Polytechnic.',
   education: {
     degree: 'B.Tech in Computer Science Engineering',
     institution: 'Parul Institute of Engineering & Technology, Vadodara',
@@ -37,11 +37,11 @@ export const PROJECTS: Project[] = [
     id: '1',
     slug: 'disasterlink',
     title: 'DisasterLink Platform',
-    subtitle: 'Real-Time Community Disaster Response Platform',
-    description: 'Government-grade emergency response platform in Next.js 15 and TypeScript, delivering role-based UI flows, live SOS workflows, and incident command dashboards.',
-    fullDescription: 'DisasterLink is a full-stack disaster management and emergency response platform connecting citizens, rescue teams, relief organizations, and government authorities during natural disasters. Architected using Next.js 15, TypeScript, Tailwind CSS, Zustand, and REST APIs, it features live SOS workflows, role-based UI dashboards across 5 route groups, keyboard accessibility (ARIA), and mobile-first responsiveness across 4 viewport breakpoints.',
+    subtitle: 'Real-Time Emergency Management Platform',
+    description: 'Next.js 15, TypeScript, Tailwind CSS, Zustand & REST APIs emergency management platform featuring role-based incident-command dashboards.',
+    fullDescription: 'DisasterLink is a real-time emergency management platform connecting Super Admins, Admins, Citizens, and Volunteers during disaster situations. Architected role-based dashboards with a real-time incident-command view, engineering 20+ reusable React components across 5 route groups. Configured Zustand for global state and a service-layer abstraction over REST APIs, reducing coupling issues by ~40%, while resolving Windows-specific build and hydration errors to keep the pipeline stable.',
     tags: ['NEXTJS 15', 'TYPESCRIPT', 'ZUSTAND', 'EMERGENCY'],
-    techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'REST APIs', 'Mapbox', 'Socket.IO', 'YOLOv8'],
+    techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'REST APIs', 'Mapbox', 'Socket.IO'],
     category: 'AI',
     image: '/disasterlink_mockup.jpg',
     imageAlt: 'DisasterLink Real-Time Emergency Command Dashboard',
@@ -50,26 +50,26 @@ export const PROJECTS: Project[] = [
     featured: true,
     size: 'lg',
     highlights: [
-      'Architected full frontend in Next.js 15 & TypeScript with role-based UI flows & live SOS workflows',
-      'Engineered 20+ reusable React components across 5 route groups with Zustand global state management',
-      'Implemented keyboard navigation, ARIA accessibility attributes, and semantic HTML5 across all flows',
-      'Mobile-first responsive design with Tailwind CSS achieving consistent behavior across 4 viewport breakpoints'
+      'Architected role-based dashboards (Super Admin, Admin, Citizen, Volunteer) with real-time incident command view',
+      'Engineered 20+ reusable React components across 5 route groups in Next.js 15 & TypeScript',
+      'Configured Zustand global state & service-layer abstraction over REST APIs, reducing coupling by ~40%',
+      'Resolved Windows-specific build and hydration errors keeping the production pipeline 100% stable'
     ],
     metrics: [
       { label: 'React Components', value: '20+' },
       { label: 'Route Groups', value: '5 Groups' },
-      { label: 'Breakpoints', value: '4 Viewports' }
+      { label: 'Coupling Reduced', value: '~40%' }
     ]
   },
   {
     id: '2',
     slug: 'carbonlens',
     title: 'CarbonLens Platform',
-    subtitle: 'AI Carbon Footprint Analyzer & Sustainability Analytics',
-    description: 'React.js AI Carbon footprint intelligence platform enabling users to log transport, energy, and lifestyle data and visualize AI-generated footprint analysis in real time.',
-    fullDescription: 'CarbonLens is an AI-powered sustainability analytics platform constructed with React.js, clean ES6+ JavaScript, Chart.js, Node.js, MongoDB, and AI APIs. It visualizes sustainability scores and monthly emissions trends with dynamic Chart.js dashboards, maintaining sub-200ms UI feedback under concurrent user interactions.',
-    tags: ['REACT.JS', 'CHART.JS', 'NODE.JS', 'AI APIS'],
-    techStack: ['React.js', 'JavaScript (ES6+)', 'Chart.js', 'Node.js', 'MongoDB', 'AI APIs', 'Tailwind CSS'],
+    subtitle: 'AI-Powered Carbon Tracking Platform',
+    description: 'Full-stack platform tracking emissions across transport, food, electricity, and screen time, integrating third-party AI/LLM APIs for real-time analysis.',
+    fullDescription: 'CarbonLens is an AI-Powered Carbon Tracking Platform developed with React.js, Node.js, MongoDB, Chart.js, and AI/LLM APIs. Developed a full-stack platform tracking emissions across transport, food, electricity, and screen time, integrating third-party AI/LLM APIs for real-time personalized analysis. Modeled the MongoDB schema and backend API layer, designed Chart.js dashboards for sustainability trends, and presented the platform at the Parul University Environment Hackathon 2026.',
+    tags: ['REACT.JS', 'NODE.JS', 'MONGODB', 'AI/LLM APIS'],
+    techStack: ['React.js', 'Node.js', 'MongoDB', 'Chart.js', 'AI/LLM APIs', 'Tailwind CSS', 'Express'],
     category: 'AI',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC2babhh_bJ_fdHLR31BrcoOvPaS20TQmSYgdieXsjyXRx7-65jEFeiDo0a62NFEpB2Wv3Gctrvm8qCfdK8I567fwvsgxz_OgJyqu1-FAMnCo9zyX2fnZm63eBPm74nSVnU2ITXDmpk9pxng4UzpqSEqSCxx9cQL0L7rNmCok4su_tp7jKApNgHRIvcq6D1b-6c0mE02KKzKwK2ZFKLzmv1GVfRjdsOxTmHxIG_KltNhvFvAPQrLGrx9A',
     imageAlt: 'CarbonLens AI Carbon Intelligence Dashboard',
@@ -78,95 +78,96 @@ export const PROJECTS: Project[] = [
     featured: true,
     size: 'lg',
     highlights: [
-      'Constructed complete React.js frontend with clean ES6+ JS for real-time transport & energy logging',
-      'Designed Chart.js dashboards visualizing sustainability scores and monthly emissions trends without unnecessary re-renders',
-      'Integrated REST API responses into the presentation layer with optimized state reconciliation maintaining sub-200ms feedback'
+      'Developed full-stack platform tracking emissions across transport, food, electricity & screen time',
+      'Integrated third-party AI/LLM APIs for real-time personalized sustainability analysis',
+      'Modeled MongoDB schema, backend API layer & Chart.js dashboards for sustainability trends',
+      'Presented platform at the Parul University Environment Hackathon 2026'
     ],
     metrics: [
-      { label: 'UI Feedback', value: '<200ms' },
-      { label: 'Visualizations', value: 'Chart.js' },
-      { label: 'State Sync', value: 'Sub-second' }
+      { label: 'AI Analysis', value: 'Real-Time' },
+      { label: 'Hackathon', value: 'Parul 2026' },
+      { label: 'Database', value: 'MongoDB' }
     ]
   },
   {
     id: '3',
-    slug: 'drishti',
-    title: 'DRISHTI AI Defense',
-    subtitle: 'Intelligent Computer Vision Surveillance Command',
-    description: 'Intelligent Surveillance system leveraging computer vision for anomaly detection and automated security protocols in high-traffic urban environments.',
-    fullDescription: 'DRISHTI is an advanced computer vision surveillance command platform designed for real-time video stream ingestion and neural object detection. Utilizing OpenCV, TensorFlow, and Dockerized microservices, it tracks target trajectories, flags unauthorized perimeter breaches, and triggers instant alerts.',
-    tags: ['AI', 'SURVEILLANCE', 'OPENCV'],
-    techStack: ['OpenCV', 'TensorFlow', 'Express', 'Docker', 'Python', 'React'],
+    slug: 'terralife',
+    title: 'Terralife App',
+    subtitle: 'Native Android Plant Identification App',
+    description: 'Native Java Android app featuring Firebase Auth/Firestore/Storage, ML Kit image labeling, CameraX capture, and Jetpack Navigation.',
+    fullDescription: 'Terralife is a Native Android Plant Identification App constructed using Java, Android SDK, Firebase (Auth, Firestore, Storage), ML Kit, CameraX, and Jetpack Navigation. Constructed the complete Java project structure from scratch, fixed Gradle version conflicts, XML layout corruption, and MaterialCardView cast crashes, reducing crash rate by ~40% and reaching ~90% on-device recognition accuracy.',
+    tags: ['JAVA', 'ANDROID SDK', 'FIREBASE', 'ML KIT'],
+    techStack: ['Java', 'Android SDK', 'Firebase Auth', 'Firestore', 'Firebase Storage', 'ML Kit', 'CameraX', 'Jetpack Navigation'],
     category: 'AI',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA7QYTB8FE7gAutxb-F2uTc120Tp3_xGMADJnXkZB4Nw3zib0W_-7zP6Okc0F27NlI5wH1PV9GZMn5yovEBzDtIRmQhVfygHHwJsWztNi2pmSFFo3IhPvZ7fu5PlYm3xeIy08Gq3xamIbjRJpT2jrttFO3RVdNb_h32EusOOgbbYTa6aqKCmA_iv4hFfvIqpkemW0gI7TXe64sTkdiM4BaTw9uqygHQV1SACTa_cvHKrU9bZG38Vr4cUg',
-    imageAlt: 'DRISHTI High-Tech Surveillance Station',
-    liveUrl: 'https://github.com/anandjadhav42004/Drishti',
-    githubUrl: 'https://github.com/anandjadhav42004/Drishti',
+    imageAlt: 'Terralife Native Android Plant App',
+    liveUrl: 'https://github.com/rudrakshachandrakantjadhav',
+    githubUrl: 'https://github.com/rudrakshachandrakantjadhav',
     featured: true,
     size: 'lg',
     highlights: [
-      'Multi-camera concurrent RTSP stream ingestion',
-      'Sub-30ms bounding-box object classification',
-      'Tactical HUD dashboard with cyber-intelligence styling',
-      'Edge-device deployment via Docker containers'
+      'Constructed complete Java Android project structure with Firebase Auth/Firestore/Storage & CameraX',
+      'Implemented ML Kit on-device image labeling & Jetpack Navigation UI flows',
+      'Fixed Gradle version conflicts, XML layout corruption & MaterialCardView crashes',
+      'Reduced crash rate by ~40% while achieving ~90% on-device plant recognition accuracy'
     ],
     metrics: [
-      { label: 'Stream Latency', value: '<30ms' },
-      { label: 'Concurrent Feeds', value: '16 Channels' },
-      { label: 'Detection Speed', value: '60 FPS' }
+      { label: 'ML Accuracy', value: '~90%' },
+      { label: 'Crash Reduction', value: '~40%' },
+      { label: 'Framework', value: 'Android SDK' }
     ]
   }
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'FRONTEND & CORE',
+    title: 'LANGUAGES & FRONTEND',
     accentColor: 'blue',
     skills: [
-      { name: 'React.js', level: 'Expert' },
-      { name: 'Next.js 15', level: 'Expert' },
+      { name: 'Java', level: 'Expert' },
       { name: 'JavaScript (ES6+)', level: 'Expert' },
       { name: 'TypeScript', level: 'Expert' },
+      { name: 'React.js', level: 'Expert' },
+      { name: 'Next.js 15', level: 'Expert' },
       { name: 'Tailwind CSS & SCSS', level: 'Expert' },
-      { name: 'Framer Motion & Three.js', level: 'Expert' },
-      { name: 'Mapbox & Leaflet GIS', level: 'Advanced' },
-      { name: 'HTML5 & Accessibility (a11y)', level: 'Expert' },
+      { name: 'HTML5 & CSS3', level: 'Expert' },
+      { name: 'Chart.js Visualizations', level: 'Expert' },
     ]
   },
   {
-    title: 'BACKEND & APIS',
+    title: 'BACKEND, DATA & MOBILE',
     accentColor: 'green',
     skills: [
-      { name: 'Node.js & Express.js', level: 'Advanced' },
-      { name: 'Python & FastAPI', level: 'Advanced' },
-      { name: 'Go (Golang)', level: 'Intermediate' },
-      { name: 'Socket.IO (Real-Time)', level: 'Advanced' },
-      { name: 'Zustand & REST APIs', level: 'Advanced' },
-      { name: 'Firebase & JWT Auth', level: 'Advanced' },
+      { name: 'Node.js & Express', level: 'Advanced' },
+      { name: 'REST API Design', level: 'Advanced' },
+      { name: 'MongoDB Schema Design', level: 'Advanced' },
+      { name: 'Firebase (Auth, Firestore, Storage)', level: 'Advanced' },
+      { name: 'Android SDK & CameraX', level: 'Advanced' },
+      { name: 'ML Kit & Jetpack Navigation', level: 'Advanced' },
     ]
   },
   {
-    title: 'AI, ML & VISION',
+    title: 'AI, LLMS & CS FUNDAMENTALS',
     accentColor: 'coral',
     skills: [
-      { name: 'YOLOv8 & OpenCV', level: 'Advanced' },
-      { name: 'PyTorch & TensorFlow', level: 'Intermediate' },
-      { name: 'NLP, LLMs & LangChain', level: 'Advanced' },
-      { name: 'Chart.js Analytics', level: 'Advanced' },
-      { name: 'AI APIs & Model Inference', level: 'Advanced' },
-      { name: 'Predictive Telemetry', level: 'Advanced' },
+      { name: 'AI/LLM API Integration (OpenAI)', level: 'Advanced' },
+      { name: 'AI-Assisted Dev (Claude, Copilot)', level: 'Expert' },
+      { name: 'Object-Oriented Programming (OOP)', level: 'Expert' },
+      { name: 'Data Structures & Algorithms (Java)', level: 'Advanced' },
+      { name: 'DBMS Basics & SQL', level: 'Advanced' },
+      { name: 'Zustand Global State', level: 'Advanced' },
     ]
   },
   {
-    title: 'DATA, CLOUD & TOOLS',
+    title: 'TOOLING & BUILDING TOWARD',
     accentColor: 'yellow',
     skills: [
-      { name: 'MongoDB Atlas & PostgreSQL', level: 'Advanced' },
-      { name: 'Redis In-Memory Cache', level: 'Intermediate' },
-      { name: 'Docker Containers', level: 'Advanced' },
       { name: 'Git / GitHub Workflow', level: 'Expert' },
-      { name: 'Vercel & Cloudinary', level: 'Expert' },
       { name: 'Chrome DevTools & Postman', level: 'Expert' },
+      { name: 'Vercel Deployment', level: 'Expert' },
+      { name: 'Building Toward: Flutter & Kotlin', level: 'Learning' },
+      { name: 'Building Toward: Python & PostgreSQL', level: 'Learning' },
+      { name: 'Building Toward: Selenium & Jest', level: 'Learning' },
     ]
   }
 ];
@@ -177,12 +178,12 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: 'Jun 2025 — Jul 2025',
     role: 'Frontend Development Intern',
     company: 'CodSoft (Remote)',
-    description: 'Delivered client-facing web applications end-to-end using HTML5, CSS3, and ES6+ JavaScript within sprint deadlines, resolving cross-device rendering regressions.',
+    description: 'Delivered 3 client-facing web applications using HTML5, CSS3, and ES6+ JavaScript within sprint-style deadlines, achieving 100% first-submission acceptance.',
     accentColor: 'green',
     highlights: [
-      'Delivered 3 client-facing web applications end-to-end using HTML5, CSS3, and ES6+ JavaScript within sprint-style deadlines, meeting all acceptance criteria on first submission.',
-      'Diagnosed and resolved cross-device rendering failures via Chrome DevTools; corrected responsive layout breakpoints across mobile, tablet, and desktop viewports, reducing visual regressions.',
-      'Structured JavaScript modules following component-level separation of concerns, improving code reusability and cutting review iteration cycles per project.'
+      'Delivered 3 client-facing web applications using HTML5, CSS3, and ES6+ JavaScript within sprint deadlines, achieving 100% first-submission acceptance.',
+      'Diagnosed cross-device rendering failures with Chrome DevTools, cutting visual regressions by ~30%.',
+      'Organized JavaScript modules around component-level separation of concerns, cutting review cycles by ~25%.'
     ]
   }
 ];
@@ -190,27 +191,19 @@ export const EXPERIENCES: ExperienceItem[] = [
 export const CERTIFICATES: CertificateItem[] = [
   {
     id: 'cert-1',
-    title: 'Generative AI Leader',
-    subtitle: 'Professional Certificate (5 Courses)',
-    issuer: 'Google Cloud Training',
+    title: 'Generative AI Engineering',
+    subtitle: 'Coursera Professional Certificate',
+    issuer: 'Google Cloud',
     issuerBadge: 'Google Cloud',
-    date: 'Aug 17, 2025',
+    date: 'Aug 2025',
     verifyUrl: 'https://coursera.org/verify/professional-cert/Z1O9ATG5VRRX',
-    coursesCount: 5,
-    courses: [
-      'Gen AI: Beyond the Chatbot',
-      'Gen AI: Unlock Foundational Concepts',
-      'Gen AI: Navigate the Landscape',
-      'Gen AI Apps: Transform Your Work',
-      'Gen AI Agents: Transform Your Organization'
-    ],
     accentColor: 'blue',
     rotation: 'rotate-1'
   },
   {
     id: 'cert-2',
-    title: 'Generative AI Engineering',
-    subtitle: 'Coursera Professional Certificate',
+    title: 'Generative AI Leader',
+    subtitle: 'Coursera Certificate',
     issuer: 'Google Cloud',
     issuerBadge: 'Google Cloud',
     date: 'Aug 2025',
@@ -254,35 +247,22 @@ export const CERTIFICATES: CertificateItem[] = [
   {
     id: 'cert-6',
     title: 'Google Prompting Essentials',
-    subtitle: 'Specialization Certificate (4 Courses)',
+    subtitle: 'Specialization Certificate',
     issuer: 'Google',
     issuerBadge: 'Google',
     date: 'Aug 16, 2025',
     verifyUrl: 'https://coursera.org/verify/specialization/VW9J14OZ88NT',
-    coursesCount: 4,
-    courses: [
-      'Start Writing Prompts like a Pro',
-      'Design Prompts for Everyday Work Tasks',
-      'Speed Up Data Analysis & Presentation Building',
-      'Use AI as a Creative or Expert Partner'
-    ],
     accentColor: 'yellow',
     rotation: '-rotate-1'
   },
   {
     id: 'cert-7',
     title: 'Generative AI for Growth Marketing',
-    subtitle: 'Specialization Certificate (3 Courses)',
+    subtitle: 'Specialization Certificate',
     issuer: 'IBM & Starweaver',
     issuerBadge: 'IBM',
     date: 'Aug 17, 2025',
     verifyUrl: 'https://coursera.org/verify/specialization/AD4PMKWX9R9D',
-    coursesCount: 3,
-    courses: [
-      'Generative AI: Introduction & Applications',
-      'Generative AI: Prompt Engineering Basics',
-      'Grow with AI: Your AI-Driven Strategy'
-    ],
     accentColor: 'blue',
     rotation: 'rotate-2'
   }
