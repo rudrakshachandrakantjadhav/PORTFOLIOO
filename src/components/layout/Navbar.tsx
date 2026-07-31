@@ -1,14 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Command, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, Command } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSoundFX } from '@/components/providers/SoundProvider';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('hero');
-  const { soundEnabled, toggleSound, playHover, playClick, playPalette } = useSoundFX();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,8 +44,6 @@ export function Navbar() {
         {/* Brand Logo */}
         <a
           href="#hero"
-          onMouseEnter={playHover}
-          onClick={playClick}
           className="font-display font-extrabold text-xl tracking-tighter text-[#111111]"
         >
           RJ.
@@ -61,8 +57,6 @@ export function Navbar() {
               <a
                 key={link.id}
                 href={link.href}
-                onMouseEnter={playHover}
-                onClick={playClick}
                 className={`font-display font-bold text-sm transition-all duration-200 ${
                   isActive
                     ? 'text-[#4F8EFF] underline underline-offset-4 decoration-4'
@@ -77,30 +71,9 @@ export function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          {/* Sound Effects Mute/Unmute Toggle */}
-          <button
-            onMouseEnter={playHover}
-            onClick={() => {
-              playClick();
-              toggleSound();
-            }}
-            className={`p-2 rounded-full border-2 border-[#111111] font-mono text-xs font-bold transition-all cursor-pointer ${
-              soundEnabled ? 'bg-[#8BFFB0] text-[#111111]' : 'bg-[#FF8A8A]/30 text-[#111111]/60'
-            }`}
-            title={soundEnabled ? 'Mute Sound Effects' : 'Enable Sound Effects'}
-          >
-            {soundEnabled ? (
-              <Volume2 className="w-4 h-4 stroke-[2.5]" />
-            ) : (
-              <VolumeX className="w-4 h-4 stroke-[2.5]" />
-            )}
-          </button>
-
           {/* Command Palette Hint */}
           <button
-            onMouseEnter={playHover}
             onClick={() => {
-              playPalette();
               const event = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true });
               window.dispatchEvent(event);
             }}
@@ -114,52 +87,48 @@ export function Navbar() {
           {/* Hire Me CTA */}
           <a
             href="#contact"
-            onMouseEnter={playHover}
-            onClick={playClick}
             className="hidden sm:inline-block px-6 py-2 rounded-full font-display font-black text-xs bg-[#111111] text-white border-2 border-[#111111] hover:scale-105 active:scale-95 transition-transform"
           >
-            Hire Me
+            HIRE ME
           </a>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Hamburger Toggle */}
           <button
-            onMouseEnter={playHover}
-            onClick={() => {
-              playClick();
-              setMobileMenuOpen(!mobileMenuOpen);
-            }}
-            className="md:hidden p-2 text-[#111111]"
-            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-full border-2 border-[#111111] bg-white text-[#111111]"
+            aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-3 p-6 bg-white border-4 border-[#111111] rounded-3xl neo-shadow-hard flex flex-col gap-4"
+            className="md:hidden mt-3 p-6 bg-white border-4 border-[#111111] rounded-3xl neo-shadow-hard space-y-4 text-center"
           >
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={link.href}
-                onMouseEnter={playHover}
-                onClick={() => {
-                  playClick();
-                  setMobileMenuOpen(false);
-                }}
-                className="font-display font-black text-lg text-[#111111] py-2 border-b-2 border-[#111111]/10 flex justify-between items-center"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block font-display font-extrabold text-lg text-[#111111] hover:text-[#4F8EFF] py-1"
               >
-                <span>{link.name}</span>
-                <span className="font-mono text-xs opacity-50">→</span>
+                {link.name}
               </a>
             ))}
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block w-full py-3 mt-4 rounded-full font-display font-black text-sm bg-[#111111] text-white border-2 border-[#111111]"
+            >
+              HIRE ME
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
