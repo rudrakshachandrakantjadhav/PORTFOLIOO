@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-light: #FFF9F0;
+    --fg-light: #111111;
+    --accent-blue: #4F8EFF;
+    --accent-yellow: #FFD54F;
+    --accent-green: #8BFFB0;
+    --accent-coral: #FF8A8A;
+    --accent-lavender: #C0AFFF;
+  }
+
+  html, body {
+    background-color: #FFF9F0;
+    color: #111111;
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  ::selection {
+    background-color: #FFD54F;
+    color: #111111;
+  }
+}
+
+/* Fix browser autofill dark background in form inputs */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-text-fill-color: #111111 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* Custom Neo-Brutalist Utilities */
+.neo-shadow-hard {
+  box-shadow: 8px 8px 0px 0px #111111;
+}
+
+.neo-shadow-premium {
+  box-shadow: 4px 4px 0px 0px #111111;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.neo-shadow-premium:hover {
+  transform: translate(-6px, -6px) rotate(-1deg);
+  box-shadow: 14px 14px 0px 0px #111111;
+}
+
+.text-huge {
+  font-size: clamp(48px, 12vw, 130px);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF9F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #111111;
+  border-radius: 0px;
+}
