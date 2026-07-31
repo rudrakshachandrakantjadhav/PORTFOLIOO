@@ -13,6 +13,9 @@ export function Contact() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // Formspree Form ID (Can be set via NEXT_PUBLIC_FORMSPREE_ID in .env.local)
+  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'mbjzvqay';
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
@@ -21,13 +24,22 @@ export function Contact() {
     setStatus('idle');
 
     try {
-      const res = await fetch('/api/contact', {
+      // 1. Primary submission to Formspree
+      const formspreeRes = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Portfolio Message from ${formData.name}`,
+        }),
       });
 
-      if (res.ok) {
+      if (formspreeRes.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
         confetti({
@@ -36,7 +48,24 @@ export function Contact() {
           origin: { y: 0.6 },
         });
       } else {
-        setStatus('error');
+        // Fallback to internal API route if Formspree returns an error
+        const fallbackRes = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (fallbackRes.ok) {
+          setStatus('success');
+          setFormData({ name: '', email: '', message: '' });
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+          });
+        } else {
+          setStatus('error');
+        }
       }
     } catch {
       setStatus('error');
@@ -58,11 +87,11 @@ export function Contact() {
                 LET'S BUILD
               </h2>
               <p className="font-sans text-xl opacity-80 leading-relaxed font-normal">
-                I'm currently looking for new opportunities and collaborations. My inbox is always open!
+                I'm currently looking for new opportunities and collaborations. Send me a message powered by Formspree!
               </p>
             </div>
 
-            {/* Form */}
+            {/* Formspree Integrated Contact Form */}
             <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6 relative z-10">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
@@ -71,6 +100,7 @@ export function Contact() {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -85,6 +115,7 @@ export function Contact() {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -99,6 +130,7 @@ export function Contact() {
                   MESSAGE
                 </label>
                 <textarea
+                  name="message"
                   rows={4}
                   required
                   value={formData.message}
@@ -111,14 +143,14 @@ export function Contact() {
               {status === 'success' && (
                 <div className="p-4 bg-[#8BFFB0] text-[#111111] border-4 border-[#111111] font-mono text-sm font-bold flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 stroke-[2.5]" />
-                  <span>Message sent successfully! I will get back to you soon.</span>
+                  <span>Message sent via Formspree! I will get back to you soon.</span>
                 </div>
               )}
 
               {status === 'error' && (
                 <div className="p-4 bg-[#FF8A8A] text-[#111111] border-4 border-[#111111] font-mono text-sm font-bold flex items-center gap-3">
                   <AlertCircle className="w-5 h-5 stroke-[2.5]" />
-                  <span>Failed to send message. Please try emailing directly!</span>
+                  <span>Failed to send message. Please try emailing {PERSONAL_INFO.email} directly!</span>
                 </div>
               )}
 
@@ -127,7 +159,7 @@ export function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="bg-[#FFD54F] text-[#111111] border-4 border-[#111111] px-10 py-5 font-display font-black text-xl neo-shadow-premium hover:bg-white transition-all flex items-center gap-3 disabled:opacity-50"
+                    className="bg-[#FFD54F] text-[#111111] border-4 border-[#111111] px-10 py-5 font-display font-black text-xl neo-shadow-premium hover:bg-white transition-all flex items-center gap-3 disabled:opacity-50 cursor-pointer"
                   >
                     <span>{loading ? 'SENDING...' : 'SAY HELLO'}</span>
                     <Send className="w-5 h-5 stroke-[2.5]" />
@@ -139,17 +171,18 @@ export function Contact() {
                     href={PERSONAL_INFO.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 bg-white text-[#111111] border-4 border-[#111111] flex items-center justify-center hover:bg-[#4F8EFF] transition-all neo-shadow-premium"
-                    title="GitHub"
+                    className="p-4 border-4 border-[#111111] bg-white text-[#111111] hover:bg-[#4F8EFF] hover:text-[#111111] transition-all neo-shadow-premium"
+                    title="GitHub Profile"
                   >
                     <GithubIcon className="w-6 h-6" />
                   </a>
+
                   <a
                     href={PERSONAL_INFO.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 bg-white text-[#111111] border-4 border-[#111111] flex items-center justify-center hover:bg-[#8BFFB0] transition-all neo-shadow-premium"
-                    title="LinkedIn"
+                    className="p-4 border-4 border-[#111111] bg-white text-[#111111] hover:bg-[#FFD54F] hover:text-[#111111] transition-all neo-shadow-premium"
+                    title="LinkedIn Profile"
                   >
                     <LinkedinIcon className="w-6 h-6" />
                   </a>
