@@ -5,11 +5,15 @@ import { PROJECTS } from '@/constants/portfolio';
 import { Project } from '@/types';
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll';
 import { GithubIcon } from '@/components/ui/icons';
-import { ExternalLink, ArrowUpRight, X, Check } from 'lucide-react';
+import { CodePlaygroundModal } from '@/components/ui/CodePlaygroundModal';
+import { useSoundFX } from '@/components/providers/SoundProvider';
+import { ArrowUpRight, Code2, X, Check } from 'lucide-react';
 import Image from 'next/image';
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeCodeProjectId, setActiveCodeProjectId] = useState<string | null>(null);
+  const { playClick, playHover } = useSoundFX();
 
   const getAccentTagColor = (tag: string) => {
     switch (tag) {
@@ -43,7 +47,7 @@ export function Projects() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest block mb-2 text-[#4F8EFF] font-bold">
-                Flagship AI & Real-Time Applications
+                Flagship AI, Real-Time & Native Mobile Apps
               </span>
               <h2 className="font-black text-4xl md:text-6xl font-display text-[#111111] text-huge">
                 PROJECTS
@@ -94,13 +98,30 @@ export function Projects() {
                     </p>
                   </div>
 
-                  <div className="pt-6 flex items-center gap-3">
+                  <div className="pt-6 flex flex-wrap items-center gap-3">
                     <button
-                      onClick={() => setSelectedProject(project)}
-                      className="bg-[#111111] text-white px-5 py-2.5 font-display font-black text-xs border-2 border-[#111111] hover:bg-[#4F8EFF] hover:text-[#111111] transition-all flex items-center gap-2 neo-shadow-premium"
+                      onMouseEnter={playHover}
+                      onClick={() => {
+                        playClick();
+                        setSelectedProject(project);
+                      }}
+                      className="bg-[#111111] text-white px-4 py-2.5 font-display font-black text-xs border-2 border-[#111111] hover:bg-[#4F8EFF] hover:text-[#111111] transition-all flex items-center gap-2 neo-shadow-premium cursor-pointer"
                     >
                       <span>CASE STUDY</span>
                       <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+                    </button>
+
+                    <button
+                      onMouseEnter={playHover}
+                      onClick={() => {
+                        playClick();
+                        setActiveCodeProjectId(project.slug);
+                      }}
+                      className="bg-[#FFD54F] text-[#111111] px-3.5 py-2.5 font-display font-black text-xs border-2 border-[#111111] hover:bg-white transition-all flex items-center gap-1.5 neo-shadow-premium cursor-pointer"
+                      title="View Architecture Code Snippets"
+                    >
+                      <Code2 className="w-4 h-4 stroke-[2.5]" />
+                      <span>CODE</span>
                     </button>
 
                     {project.githubUrl && (
@@ -108,7 +129,9 @@ export function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 border-2 border-[#111111] bg-white hover:bg-[#FFD54F] transition-colors neo-shadow-premium"
+                        onMouseEnter={playHover}
+                        onClick={playClick}
+                        className="p-2.5 border-2 border-[#111111] bg-white hover:bg-[#FFD54F] transition-colors neo-shadow-premium cursor-pointer"
                         title="GitHub Repository"
                       >
                         <GithubIcon className="w-4 h-4" />
@@ -124,9 +147,14 @@ export function Projects() {
 
       {/* Case Study Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
-          <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 border-4 border-[#111111] bg-white neo-shadow-hard text-[#111111]">
-            <div className="flex justify-between items-start mb-6">
+        <div
+          data-lenis-prevent
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+          className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs"
+        >
+          <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-none p-6 sm:p-10 border-4 border-[#111111] bg-white neo-shadow-hard text-[#111111]">
+            <div className="flex justify-between items-start mb-6 border-b-4 border-[#111111] pb-4">
               <div>
                 <span className="font-mono text-xs font-bold text-[#4F8EFF] uppercase">
                   {selectedProject.category}
@@ -136,76 +164,94 @@ export function Projects() {
                 </h3>
               </div>
               <button
-                onClick={() => setSelectedProject(null)}
-                className="p-2 rounded-full border-2 border-[#111111] hover:bg-[#FF8A8A] transition-colors"
+                onMouseEnter={playHover}
+                onClick={() => {
+                  playClick();
+                  setSelectedProject(null);
+                }}
+                className="p-2 border-2 border-[#111111] bg-[#FF8A8A] text-[#111111] hover:bg-white transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5 stroke-[3]" />
               </button>
             </div>
 
-            <div className="space-y-6">
-              <p className="font-sans text-base leading-relaxed text-[#111111]/90 font-medium">
-                {selectedProject.fullDescription}
-              </p>
+            <p className="font-sans text-lg font-medium leading-relaxed mb-6">
+              {selectedProject.fullDescription}
+            </p>
 
-              <div>
-                <h4 className="font-mono text-xs font-black uppercase mb-3 text-[#111111]/70">
-                  Key Technical Highlights & Stack
-                </h4>
-                <ul className="space-y-2">
-                  {selectedProject.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm font-sans font-medium">
-                      <Check className="w-4 h-4 text-[#4F8EFF] shrink-0 mt-0.5 stroke-[3]" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
+            {/* Highlights */}
+            <div className="space-y-3 mb-8">
+              <h4 className="font-display font-black text-lg uppercase text-[#111111]">
+                KEY ARCHITECTURE HIGHLIGHTS
+              </h4>
+              <div className="space-y-2">
+                {selectedProject.highlights.map((h, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 bg-[#FFF9F0] border-2 border-[#111111]">
+                    <Check className="w-5 h-5 text-[#8BFFB0] shrink-0 mt-0.5 stroke-[3]" />
+                    <span className="font-sans text-sm font-medium">{h}</span>
+                  </div>
+                ))}
               </div>
+            </div>
 
-              <div className="flex flex-wrap gap-2 pt-2">
+            {/* Tech Stack Pills */}
+            <div className="space-y-3 mb-8">
+              <h4 className="font-display font-black text-lg uppercase text-[#111111]">
+                TECHS UTILIZED
+              </h4>
+              <div className="flex flex-wrap gap-2">
                 {selectedProject.techStack.map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-[#111111]/5 border-2 border-[#111111] font-mono text-xs font-bold text-[#111111]">
+                  <span
+                    key={tech}
+                    className="px-3 py-1 bg-[#111111] text-white border-2 border-[#111111] font-mono text-xs font-bold"
+                  >
                     {tech}
                   </span>
                 ))}
               </div>
+            </div>
 
-              {selectedProject.metrics && (
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t-2 border-[#111111]/10">
-                  {selectedProject.metrics.map((m) => (
-                    <div key={m.label} className="text-center p-3 border-2 border-[#111111] bg-[#FFD54F]/20 neo-shadow-premium">
-                      <div className="font-display font-black text-lg text-[#111111]">{m.value}</div>
-                      <div className="font-mono text-[10px] font-bold text-[#111111]/70 uppercase">{m.label}</div>
-                    </div>
-                  ))}
-                </div>
+            {/* Action CTAs */}
+            <div className="pt-4 border-t-4 border-[#111111] flex flex-wrap gap-4">
+              <button
+                onMouseEnter={playHover}
+                onClick={() => {
+                  playClick();
+                  const slug = selectedProject.slug;
+                  setSelectedProject(null);
+                  setActiveCodeProjectId(slug);
+                }}
+                className="px-6 py-3 bg-[#FFD54F] text-[#111111] border-4 border-[#111111] font-display font-black text-sm neo-shadow-premium hover:bg-white transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <Code2 className="w-5 h-5 stroke-[2.5]" />
+                <span>VIEW CODE PLAYGROUND</span>
+              </button>
+
+              {selectedProject.githubUrl && (
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={playHover}
+                  onClick={playClick}
+                  className="px-6 py-3 bg-[#111111] text-white border-4 border-[#111111] font-display font-black text-sm neo-shadow-premium hover:bg-[#4F8EFF] hover:text-[#111111] transition-all flex items-center gap-2 cursor-pointer"
+                >
+                  <GithubIcon className="w-5 h-5" />
+                  <span>VIEW GITHUB REPO</span>
+                </a>
               )}
-
-              <div className="pt-6 flex gap-4">
-                {selectedProject.liveUrl && (
-                  <a
-                    href={selectedProject.liveUrl}
-                    target="_blank"
-                    className="px-6 py-3 bg-[#111111] text-white border-2 border-[#111111] font-display font-black text-sm hover:bg-[#4F8EFF] hover:text-[#111111] transition-colors flex items-center gap-2 neo-shadow-premium"
-                  >
-                    <ExternalLink className="w-4 h-4 stroke-[2.5]" />
-                    <span>Live Demo</span>
-                  </a>
-                )}
-                {selectedProject.githubUrl && (
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    className="px-6 py-3 bg-white text-[#111111] border-2 border-[#111111] font-display font-black text-sm hover:bg-[#FFD54F] transition-colors flex items-center gap-2 neo-shadow-premium"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>Source Code</span>
-                  </a>
-                )}
-              </div>
             </div>
           </div>
         </div>
+      )}
+
+      {/* Code Snippet Playground Modal */}
+      {activeCodeProjectId && (
+        <CodePlaygroundModal
+          isOpen={!!activeCodeProjectId}
+          onClose={() => setActiveCodeProjectId(null)}
+          projectId={activeCodeProjectId}
+        />
       )}
     </section>
   );
