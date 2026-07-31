@@ -13,8 +13,8 @@ export function Contact() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Formspree Form ID (Can be set via NEXT_PUBLIC_FORMSPREE_ID in .env.local)
-  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'mbjzvqay';
+  // Official Formspree Endpoint ID
+  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xnjbjbgw';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
