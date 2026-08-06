@@ -91,11 +91,11 @@ export function AIChatWidget() {
     const q = query.toLowerCase();
 
     if (q.includes('disasterlink') || q.includes('disaster') || q.includes('sos') || q.includes('emergency')) {
-      return `🚨 **DisasterLink Platform**: Rudraksha's flagship real-time community disaster response platform.\n\n• **Architecture**: Government-grade emergency platform built in Next.js 15 & TypeScript.\n• **Highlights**: 20+ reusable React components across 5 route groups, Zustand global state management, live SOS workflows, role-based dashboards, ARIA accessibility, and mobile-first responsiveness across 4 viewports.\n• **Tech**: Next.js 15, TypeScript, Tailwind CSS, Zustand, Framer Motion, REST APIs, Mapbox, Socket.IO, YOLOv8.\n• **GitHub**: https://github.com/rudrakshachandrakantjadhav/disasterlink`;
+      return `🚨 **DisasterLink Platform**: Rudraksha's flagship real-time community disaster response platform.\n\n• **Architecture**: Government-grade emergency platform built in Next.js 15 & TypeScript.\n• **Highlights**: 20+ reusable React components across 5 route groups, Zustand global state management, live SOS workflows, role-based dashboards, ARIA accessibility, and mobile-first responsiveness across 4 viewports.\n• **Tech**: Next.js 15, TypeScript, Tailwind CSS, Zustand, Framer Motion, REST APIs, Mapbox, Socket.IO, YOLOv8.\n• **GitHub**: https://github.com/rudraksha-jadhav/disasterlink`;
     }
 
     if (q.includes('carbonlens') || q.includes('carbon') || q.includes('sustainability')) {
-      return `🌱 **CarbonLens Platform**: AI Carbon Footprint Analyzer & Sustainability Analytics.\n\n• **Highlights**: Constructed complete React.js frontend with clean ES6+ JavaScript. Enables real-time logging of transport, energy & lifestyle data with Chart.js emissions dashboards maintaining sub-200ms UI feedback.\n• **Tech**: React.js, JavaScript (ES6+), Chart.js, Node.js, MongoDB, AI APIs, Tailwind CSS.\n• **GitHub**: https://github.com/rudrakshachandrakantjadhav/CarbonLens-AI-Powered-Carbon-Intelligence-Sustainability-Analytics-Platform`;
+      return `🌱 **CarbonLens Platform**: AI Carbon Footprint Analyzer & Sustainability Analytics.\n\n• **Highlights**: Constructed complete React.js frontend with clean ES6+ JavaScript. Enables real-time logging of transport, energy & lifestyle data with Chart.js emissions dashboards maintaining sub-200ms UI feedback.\n• **Tech**: React.js, JavaScript (ES6+), Chart.js, Node.js, MongoDB, AI APIs, Tailwind CSS.\n• **GitHub**: https://github.com/rudraksha-jadhav/CarbonLens-AI-Powered-Carbon-Intelligence-Sustainability-Analytics-Platform`;
     }
 
     if (q.includes('drishti') || q.includes('surveillance') || q.includes('vision') || q.includes('opencv')) {
@@ -119,7 +119,7 @@ export function AIChatWidget() {
     }
 
     if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('phone') || q.includes('linkedin') || q.includes('reach')) {
-      return `📫 **Official Contact Information**:\n\n• **Full Name**: Rudraksha C. Jadhav\n• **Email**: Rudrakshajadhav.work@gmail.com\n• **Phone**: +91 8010422174\n• **LinkedIn**: https://www.linkedin.com/in/rudrakshajadhav/\n• **GitHub**: https://github.com/rudrakshachandrakantjadhav\n• **Location**: Vadodara, India\n• **Availability**: Available for software engineering roles & collaborations!`;
+      return `📫 **Official Contact Information**:\n\n• **Full Name**: Rudraksha C. Jadhav\n• **Email**: Rudrakshajadhav.work@gmail.com\n• **Phone**: +91 8010422174\n• **LinkedIn**: https://www.linkedin.com/in/rudrakshajadhav/\n• **GitHub**: https://github.com/rudraksha-jadhav\n• **Location**: Vadodara, India\n• **Availability**: Available for software engineering roles & collaborations!`;
     }
 
     return `🤖 Thank you for your inquiry! Rudraksha C. Jadhav is a Senior Software Engineer skilled in Next.js 15, React.js, TypeScript, Python, Socket.IO, and AI models. Feel free to ask about his CodSoft internship, 3 major projects, 7 verified certifications, or official email/phone!`;
