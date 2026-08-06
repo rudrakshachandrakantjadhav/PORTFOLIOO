@@ -4,9 +4,9 @@ export const PERSONAL_INFO = {
   name: 'RUDRAKSHA C. JADHAV',
   shortName: 'RJ.',
   title: 'SOFTWARE ENGINEER',
-  headline: 'Final-year B.Tech Computer Engineering student who builds complete products end-to-end – frontend, backend, data layer, and deployment – across React, Next.js, Node.js, and Java/Android.',
-  aboutBioLight: 'Final-year B.Tech Computer Engineering student at Parul Institute of Engineering & Technology, Vadodara. Work spans an emergency-response dashboard (DisasterLink), an AI-integrated analytics platform (CarbonLens), and a native Android app (Terralife), backed by two Generative AI certifications (Google Cloud, via Coursera) and self-directed Data Structures & Algorithms study (Java).',
-  aboutBioDark: 'Experienced in architecting role-based dashboards, modeling MongoDB schemas, building native Java Android apps with ML Kit & CameraX, and integrating third-party AI/LLM APIs. Hold a Diploma in Mechanical Engineering from Puranmal Lahoti Government Polytechnic.',
+  headline: 'Final-year B.Tech Computer Engineering student who builds complete products end-to-end – frontend, backend, data layer, and deployment – across React, Next.js, Flutter, Node.js, and Java/Android.',
+  aboutBioLight: 'Final-year B.Tech Computer Engineering student at Parul Institute of Engineering & Technology, Vadodara. Work spans an emergency-response dashboard (DisasterLink), an AI-integrated analytics platform (CarbonLens), a native Android app (Terralife), and a Flutter fashion e-commerce app (Collections), backed by two Generative AI certifications (Google Cloud, via Coursera) and self-directed Data Structures & Algorithms study (Java).',
+  aboutBioDark: 'Experienced in architecting role-based dashboards, modeling MongoDB schemas, building native Java Android & Flutter cross-platform apps with Riverpod, and integrating third-party AI/LLM APIs. Hold a Diploma in Mechanical Engineering from Puranmal Lahoti Government Polytechnic.',
   education: {
     degree: 'B.Tech in Computer Science Engineering',
     institution: 'Parul Institute of Engineering & Technology, Vadodara',
@@ -18,7 +18,7 @@ export const PERSONAL_INFO = {
     period: 'Jun 2020 — May 2024',
   },
   stats: [
-    { label: 'Major Projects', value: '3' },
+    { label: 'Major Projects', value: '4' },
     { label: 'Certifications', value: '7' },
     { label: 'Degree Focus', value: 'B.Tech CSE' },
     { label: 'Open Source', value: '50+' },
@@ -91,6 +91,34 @@ export const PROJECTS: Project[] = [
   },
   {
     id: '3',
+    slug: 'collections',
+    title: 'Collections App',
+    subtitle: 'Fashion E-commerce Mobile App',
+    description: 'A premium fashion e-commerce mobile application built with Flutter, Dart, Riverpod, GoRouter, REST API, Node.js, Express.js, and MongoDB.',
+    fullDescription: 'Collections is a premium fashion e-commerce mobile application built with Flutter that provides users with a seamless shopping experience. The app allows users to browse fashion products, view detailed product information, manage cart and wishlist items, authenticate accounts, and complete purchases through an intuitive and modern interface.',
+    tags: ['FLUTTER', 'DART', 'RIVERPOD', 'ECOMMERCE'],
+    techStack: ['Flutter', 'Dart', 'Riverpod', 'GoRouter', 'REST API', 'Node.js', 'Express.js', 'MongoDB'],
+    category: 'ECOMMERCE',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfJM8c1nuxfqWxeDT4HsY3o6uFm-QAqr5QER2XPIWR1sDL58rt_8emmwuNnA-eO-KGVry_YAMsxgNCmfZMXkwKzFGY1jBVtnKgY6naS7rnAys9rAZ-MOWxE7wdKqLHNRYo6J6mGb-Z3WZ_X8WdJketh7V1LcxXm4-pWEQQxygmGzSx3CV1FhxDS-hOtIKYlzQLi2AcqRRUoLhFQFBzgW2Rbz2S00ClLV178H9fcxoFvDHhBI1mjvSVTQ',
+    imageAlt: 'Collections Fashion E-commerce Mobile App',
+    liveUrl: 'https://github.com/rudraksha-jadhav',
+    githubUrl: 'https://github.com/rudraksha-jadhav',
+    featured: true,
+    size: 'lg',
+    highlights: [
+      'Engineered cross-platform mobile shopping UX with Flutter, Dart & Riverpod state management',
+      'Implemented GoRouter navigation, cart/wishlist state persistence & secure auth flows',
+      'Modeled Node.js, Express.js & MongoDB REST API backend for real-time catalog & order processing',
+      'Created intuitive, modern mobile UI with seamless checkout and product discovery'
+    ],
+    metrics: [
+      { label: 'State Sync', value: 'Riverpod' },
+      { label: 'Platform', value: 'Flutter/Dart' },
+      { label: 'Backend', value: 'Node/MongoDB' }
+    ]
+  },
+  {
+    id: '4',
     slug: 'terralife',
     title: 'Terralife App',
     subtitle: 'Native Android Plant Identification App',
@@ -124,14 +152,14 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     title: 'LANGUAGES & FRONTEND',
     accentColor: 'blue',
     skills: [
+      { name: 'Flutter & Dart', level: 'Expert' },
       { name: 'Java', level: 'Expert' },
       { name: 'JavaScript (ES6+)', level: 'Expert' },
       { name: 'TypeScript', level: 'Expert' },
       { name: 'React.js', level: 'Expert' },
       { name: 'Next.js 15', level: 'Expert' },
       { name: 'Tailwind CSS & SCSS', level: 'Expert' },
-      { name: 'HTML5 & CSS3', level: 'Expert' },
-      { name: 'Chart.js Visualizations', level: 'Expert' },
+      { name: 'Riverpod & GoRouter', level: 'Expert' },
     ]
   },
   {
@@ -165,7 +193,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       { name: 'Git / GitHub Workflow', level: 'Expert' },
       { name: 'Chrome DevTools & Postman', level: 'Expert' },
       { name: 'Vercel Deployment', level: 'Expert' },
-      { name: 'Building Toward: Flutter & Kotlin', level: 'Learning' },
+      { name: 'Building Toward: Kotlin', level: 'Learning' },
       { name: 'Building Toward: Python & PostgreSQL', level: 'Learning' },
       { name: 'Building Toward: Selenium & Jest', level: 'Learning' },
     ]

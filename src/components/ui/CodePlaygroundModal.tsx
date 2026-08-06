@@ -136,6 +136,62 @@ export function EmissionsDashboard({ monthlyData }) {
       }
     ]
   },
+  collections: {
+    projectId: 'collections',
+    projectTitle: 'Collections App',
+    snippets: [
+      {
+        id: 'col-provider',
+        filename: 'lib/providers/cart_provider.dart',
+        language: 'dart',
+        description: 'Flutter Riverpod state management provider handling real-time cart mutations, wishlist persistence, and checkout totals.',
+        code: `import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class CartItem {
+  final String id;
+  final String title;
+  final double price;
+  final int quantity;
+
+  CartItem({required this.id, required this.title, required this.price, required this.quantity});
+}
+
+class CartNotifier extends StateNotifier<List<CartItem>> {
+  CartNotifier() : super([]);
+
+  void addItem(CartItem item) {
+    state = [...state, item];
+  }
+
+  double get totalPrice => state.fold(0, (sum, item) => sum + (item.price * item.quantity));
+}
+
+final cartProvider = StateNotifierProvider<CartNotifier, List<CartItem>>((ref) {
+  return CartNotifier();
+});`
+      },
+      {
+        id: 'col-api',
+        filename: 'server/routes/products.js',
+        language: 'javascript',
+        description: 'Node.js & Express.js REST API controller servicing MongoDB fashion product queries and order authentication.',
+        code: `const express = require('express');
+const router = express.Router();
+const Product = require('../models/Product');
+
+router.get('/products', async (req, res) => {
+  try {
+    const products = await Product.find({ isFeatured: true }).limit(20);
+    res.json({ success: true, count: products.length, data: products });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error retrieving fashion catalog' });
+  }
+});
+
+module.exports = router;`
+      }
+    ]
+  },
   terralife: {
     projectId: 'terralife',
     projectTitle: 'Terralife App',

@@ -98,6 +98,10 @@ export function AIChatWidget() {
       return `🌱 **CarbonLens Platform**: AI Carbon Footprint Analyzer & Sustainability Analytics.\n\n• **Highlights**: Constructed complete React.js frontend with clean ES6+ JavaScript. Enables real-time logging of transport, energy & lifestyle data with Chart.js emissions dashboards maintaining sub-200ms UI feedback.\n• **Tech**: React.js, JavaScript (ES6+), Chart.js, Node.js, MongoDB, AI APIs, Tailwind CSS.\n• **GitHub**: https://github.com/rudraksha-jadhav/CarbonLens-AI-Powered-Carbon-Intelligence-Sustainability-Analytics-Platform`;
     }
 
+    if (q.includes('collections') || q.includes('fashion') || q.includes('flutter') || q.includes('e-commerce') || q.includes('ecommerce')) {
+      return `🛍️ **Collections — Fashion E-Commerce Mobile App**:\n\n• **Overview**: Premium fashion e-commerce mobile application providing a seamless shopping experience with product discovery, cart/wishlist management, account auth & instant checkout.\n• **Tech**: Flutter, Dart, Riverpod, GoRouter, REST API, Node.js, Express.js, MongoDB.\n• **GitHub**: https://github.com/rudraksha-jadhav`;
+    }
+
     if (q.includes('drishti') || q.includes('surveillance') || q.includes('vision') || q.includes('opencv')) {
       return `👁️ **DRISHTI AI Defense**: Intelligent Computer Vision Surveillance Command.\n\n• **Highlights**: Ingests multi-camera RTSP video streams with sub-30ms bounding-box object classification and automated perimeter breach alerts.\n• **Tech**: OpenCV, TensorFlow, Express, Docker, Python, React.\n• **GitHub**: https://github.com/anandjadhav42004/Drishti`;
     }
