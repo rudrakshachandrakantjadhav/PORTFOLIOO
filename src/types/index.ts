@@ -10,6 +10,7 @@ export interface Project {
   category: 'AI' | 'FINTECH' | 'DATA' | 'WEB3' | 'ECOMMERCE';
   image: string;
   imageAlt: string;
+  gallery?: string[];
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;

@@ -99,8 +99,14 @@ export const PROJECTS: Project[] = [
     tags: ['FLUTTER', 'DART', 'RIVERPOD', 'ECOMMERCE'],
     techStack: ['Flutter', 'Dart', 'Riverpod', 'GoRouter', 'REST API', 'Node.js', 'Express.js', 'MongoDB'],
     category: 'ECOMMERCE',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfJM8c1nuxfqWxeDT4HsY3o6uFm-QAqr5QER2XPIWR1sDL58rt_8emmwuNnA-eO-KGVry_YAMsxgNCmfZMXkwKzFGY1jBVtnKgY6naS7rnAys9rAZ-MOWxE7wdKqLHNRYo6J6mGb-Z3WZ_X8WdJketh7V1LcxXm4-pWEQQxygmGzSx3CV1FhxDS-hOtIKYlzQLi2AcqRRUoLhFQFBzgW2Rbz2S00ClLV178H9fcxoFvDHhBI1mjvSVTQ',
-    imageAlt: 'Collections Fashion E-commerce Mobile App',
+    image: '/collections/collections_home1.png',
+    imageAlt: 'Collections Fashion E-commerce Mobile App Home Screen',
+    gallery: [
+      '/collections/collections_home1.png',
+      '/collections/collections_home2.png',
+      '/collections/collections_cart.png',
+      '/collections/collections_profile.png'
+    ],
     liveUrl: 'https://github.com/rudraksha-jadhav',
     githubUrl: 'https://github.com/rudraksha-jadhav',
     featured: true,
