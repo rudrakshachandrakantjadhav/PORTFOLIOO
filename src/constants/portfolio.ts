@@ -6,7 +6,7 @@ export const PERSONAL_INFO = {
   title: 'SOFTWARE ENGINEER',
   headline: 'Final-year B.Tech Computer Engineering student who builds complete products end-to-end – frontend, backend, data layer, and deployment – across React, Next.js, Flutter, Node.js, and Java/Android.',
   aboutBioLight: 'Final-year B.Tech Computer Engineering student at Parul Institute of Engineering & Technology, Vadodara. Work spans an emergency-response dashboard (DisasterLink), an AI-integrated analytics platform (CarbonLens), a native Android app (Terralife), and a Flutter fashion e-commerce app (Collections), backed by two Generative AI certifications (Google Cloud, via Coursera) and self-directed Data Structures & Algorithms study (Java).',
-  aboutBioDark: 'Experienced in architecting role-based dashboards, modeling MongoDB schemas, building native Java Android & Flutter cross-platform apps with Riverpod, and integrating third-party AI/LLM APIs. Hold a Diploma in Mechanical Engineering from Puranmal Lahoti Government Polytechnic.',
+  aboutBioDark: 'Experienced in architecting role-based dashboards, modeling MongoDB schemas, building native Java Android & Flutter cross-platform apps with Riverpod & GoRouter, and integrating third-party AI/LLM APIs. Hold a Diploma in Mechanical Engineering from Puranmal Lahoti Government Polytechnic.',
   education: {
     degree: 'B.Tech in Computer Science Engineering',
     institution: 'Parul Institute of Engineering & Technology, Vadodara',
@@ -149,29 +149,30 @@ export const PROJECTS: Project[] = [
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'LANGUAGES & FRONTEND',
+    title: 'FLUTTER & MOBILE FRONTEND',
     accentColor: 'blue',
     skills: [
-      { name: 'Flutter & Dart', level: 'Expert' },
-      { name: 'Java', level: 'Expert' },
-      { name: 'JavaScript (ES6+)', level: 'Expert' },
-      { name: 'TypeScript', level: 'Expert' },
-      { name: 'React.js', level: 'Expert' },
-      { name: 'Next.js 15', level: 'Expert' },
+      { name: 'Flutter', level: 'Expert' },
+      { name: 'Dart', level: 'Expert' },
+      { name: 'Riverpod State Mgmt', level: 'Expert' },
+      { name: 'GoRouter Navigation', level: 'Expert' },
+      { name: 'React.js & Next.js 15', level: 'Expert' },
+      { name: 'JavaScript (ES6+) & TypeScript', level: 'Expert' },
       { name: 'Tailwind CSS & SCSS', level: 'Expert' },
-      { name: 'Riverpod & GoRouter', level: 'Expert' },
+      { name: 'Java & Android SDK', level: 'Expert' },
     ]
   },
   {
-    title: 'BACKEND, DATA & MOBILE',
+    title: 'BACKEND, APIS & DATA',
     accentColor: 'green',
     skills: [
-      { name: 'Node.js & Express', level: 'Advanced' },
-      { name: 'REST API Design', level: 'Advanced' },
-      { name: 'MongoDB Schema Design', level: 'Advanced' },
+      { name: 'Node.js', level: 'Expert' },
+      { name: 'Express.js', level: 'Expert' },
+      { name: 'REST API Architecture', level: 'Expert' },
+      { name: 'MongoDB & Schema Modeling', level: 'Expert' },
       { name: 'Firebase (Auth, Firestore, Storage)', level: 'Advanced' },
-      { name: 'Android SDK & CameraX', level: 'Advanced' },
-      { name: 'ML Kit & Jetpack Navigation', level: 'Advanced' },
+      { name: 'CameraX & Jetpack Navigation', level: 'Advanced' },
+      { name: 'ML Kit On-Device Vision', level: 'Advanced' },
     ]
   },
   {
@@ -187,10 +188,10 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ]
   },
   {
-    title: 'TOOLING & BUILDING TOWARD',
+    title: 'TOOLING & ARCHITECTURE',
     accentColor: 'yellow',
     skills: [
-      { name: 'Git / GitHub Workflow', level: 'Expert' },
+      { name: 'Git & GitHub Workflow', level: 'Expert' },
       { name: 'Chrome DevTools & Postman', level: 'Expert' },
       { name: 'Vercel Deployment', level: 'Expert' },
       { name: 'Building Toward: Kotlin', level: 'Learning' },
