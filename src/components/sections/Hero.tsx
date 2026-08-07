@@ -7,11 +7,13 @@ import { MagneticButton } from '@/components/animations/MagneticButton';
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll';
 import { ParallaxWrapper } from '@/components/animations/ParallaxWrapper';
 import { ResumeModal } from '@/components/ui/ResumeModal';
+import { JDMatcherModal } from '@/components/ui/JDMatcherModal';
 import { useSoundFX } from '@/components/providers/SoundProvider';
-import { ArrowUpRight, Download, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Download, Sparkles, Target } from 'lucide-react';
 
 export function Hero() {
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [jdMatcherOpen, setJdMatcherOpen] = useState(false);
   const { playClick, playHover } = useSoundFX();
 
   return (
@@ -47,16 +49,16 @@ export function Hero() {
           </RevealOnScroll>
 
           <RevealOnScroll direction="up" delay={0.3}>
-            <div className="flex flex-wrap gap-6 pt-4">
+            <div className="flex flex-wrap gap-4 pt-4">
               <MagneticButton>
                 <a
                   href="#projects"
                   onMouseEnter={playHover}
                   onClick={playClick}
-                  className="bg-[#4F8EFF] text-[#111111] border-4 border-[#111111] px-8 py-4 font-display font-black text-xl neo-shadow-premium flex items-center gap-3 hover:rotate-1 hover:bg-[#3b7be8] transition-all"
+                  className="bg-[#4F8EFF] text-[#111111] border-4 border-[#111111] px-6 py-3.5 font-display font-black text-lg neo-shadow-premium flex items-center gap-2 hover:rotate-1 hover:bg-[#3b7be8] transition-all"
                 >
                   <span>EXPLORE WORK</span>
-                  <ArrowUpRight className="w-6 h-6 stroke-[3]" />
+                  <ArrowUpRight className="w-5 h-5 stroke-[3]" />
                 </a>
               </MagneticButton>
 
@@ -67,10 +69,26 @@ export function Hero() {
                     playClick();
                     setResumeOpen(true);
                   }}
-                  className="bg-[#FFD54F] text-[#111111] border-4 border-[#111111] px-8 py-4 font-display font-black text-xl neo-shadow-premium flex items-center gap-3 hover:-rotate-1 hover:bg-[#ecc23a] transition-all cursor-pointer"
+                  className="bg-[#FFD54F] text-[#111111] border-4 border-[#111111] px-6 py-3.5 font-display font-black text-lg neo-shadow-premium flex items-center gap-2 hover:-rotate-1 hover:bg-[#ecc23a] transition-all cursor-pointer"
                 >
                   <span>GET CV</span>
-                  <Download className="w-6 h-6 stroke-[3]" />
+                  <Download className="w-5 h-5 stroke-[3]" />
+                </button>
+              </MagneticButton>
+
+              {/* Gemini AI Job Description Matcher Button */}
+              <MagneticButton>
+                <button
+                  onMouseEnter={playHover}
+                  onClick={() => {
+                    playClick();
+                    setJdMatcherOpen(true);
+                  }}
+                  className="bg-[#8BFFB0] text-[#111111] border-4 border-[#111111] px-6 py-3.5 font-display font-black text-lg neo-shadow-premium flex items-center gap-2 hover:rotate-1 transition-all cursor-pointer"
+                  title="Analyze Job Description Compatibility with Gemini AI"
+                >
+                  <Target className="w-5 h-5 stroke-[2.5]" />
+                  <span>JD MATCH & COMPATIBILITY</span>
                 </button>
               </MagneticButton>
             </div>
@@ -87,6 +105,9 @@ export function Hero() {
 
       {/* Interactive Resume Modal Viewer */}
       <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
+
+      {/* Gemini AI JD Matcher Modal */}
+      <JDMatcherModal isOpen={jdMatcherOpen} onClose={() => setJdMatcherOpen(false)} />
     </section>
   );
 }
