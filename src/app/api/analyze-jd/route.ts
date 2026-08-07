@@ -32,9 +32,9 @@ Flutter, Dart, Riverpod, GoRouter, React.js, Next.js 15, JavaScript (ES6+), Type
 
 export async function POST(req: Request) {
   try {
-    const { jobDescription, jobTitle } = await req.json();
+    const { jobDescription, jobTitle, companyName } = await req.json();
 
-    if (!jobDescription || typeof jobDescription !== 'string' || jobDescription.trim().length < 10) {
+    if (!jobDescription || typeof jobDescription !== 'string' || jobDescription.trim().length < 5) {
       return NextResponse.json({ error: 'Please provide a valid Job Description' }, { status: 400 });
     }
 
@@ -44,9 +44,10 @@ export async function POST(req: Request) {
       const ai = new GoogleGenAI({ apiKey });
 
       const prompt = `
-You are an expert technical recruiter analyzing job compatibility for candidate RUDRAKSHA C. JADHAV.
+You are an elite technical hiring director and ATS compatibility analyzer evaluating candidate RUDRAKSHA C. JADHAV.
 
-Target Job Title/Role: ${jobTitle || 'Software Engineer'}
+Target Job Title: ${jobTitle || 'Software Engineer'}
+Company: ${companyName || 'Target Organization'}
 Job Description Provided:
 """
 ${jobDescription}
@@ -57,20 +58,36 @@ Candidate Resume & Portfolio Data:
 ${RESUME_SUMMARY}
 """
 
-Your task is to analyze how well Rudraksha matches this job description and generate a structured JSON analysis strictly following this format:
+Analyze how well Rudraksha matches this job description and generate a complete structured JSON response matching this EXACT schema:
 {
-  "matchScore": number (between 75 and 98),
+  "matchScore": number (between 78 and 98),
+  "atsScore": number (between 82 and 99),
   "matchCategory": string ("EXCELLENT MATCH" or "STRONG MATCH" or "GREAT FIT"),
-  "summary": string (2 concise sentences summarizing why Rudraksha is a great fit),
-  "matchingSkills": [string, string, string, string],
+  "verdictRating": string ("★★★★★ Excellent Fit" or "★★★★☆ Strong Fit"),
+  "recommendedAction": string ("INTERVIEW CANDIDATE" or "SHORTLIST IMMEDIATELY"),
+  "summary": string (2-3 concise sentences summarizing why Rudraksha is an outstanding candidate),
+  "strengths": [string, string, string, string],
+  "matchingSkills": [string, string, string, string, string, string],
+  "missingSkills": [string, string],
   "matchingProjects": [
-    { "title": string, "reason": string },
-    { "title": string, "reason": string }
+    { "title": string, "score": number, "reason": string },
+    { "title": string, "score": number, "reason": string },
+    { "title": string, "score": number, "reason": string }
   ],
-  "tailoredPitch": string (A 2-3 sentence compelling elevator pitch addressed to the hiring manager)
+  "interviewQuestions": [
+    { "question": string, "answer": string },
+    { "question": string, "answer": string },
+    { "question": string, "answer": string }
+  ],
+  "salaryBenchmark": { "typical": "₹8–14 LPA", "marketDemand": "Very High", "competition": "Medium" },
+  "hiringProbability": { "recruiterInterest": "🔥🔥🔥🔥☆", "likelyInterview": "89%", "likelyShortlist": "91%" },
+  "tailoredPitch": string (A 2-3 sentence elevator pitch),
+  "coverLetter": string (A formal 3-paragraph cover letter snippet),
+  "linkedinMessage": string (A 2-sentence LinkedIn connection message),
+  "suggestedPath": [string, string, string, string]
 }
 
-DO NOT include any markdown code blocks (like \`\`\`json). Return ONLY raw valid JSON text.
+DO NOT include markdown backticks (like \`\`\`json). Return ONLY valid raw JSON text.
 `;
 
       const modelsToTry = [
@@ -88,7 +105,7 @@ DO NOT include any markdown code blocks (like \`\`\`json). Return ONLY raw valid
             contents: [{ role: 'user', parts: [{ text: prompt }] }],
             config: {
               temperature: 0.3,
-              maxOutputTokens: 800,
+              maxOutputTokens: 1200,
             },
           });
 
@@ -102,24 +119,40 @@ DO NOT include any markdown code blocks (like \`\`\`json). Return ONLY raw valid
             poweredBy: modelName,
           });
         } catch (err) {
-          console.warn(`Model ${modelName} JD analysis failed, trying next fallback...`, err);
+          console.warn(`Model ${modelName} JD analysis failed, trying fallback...`, err);
         }
       }
     }
 
-    // Fallback static analysis if no API key or network failure
+    // Fallback static ATS analysis
     return NextResponse.json({
       success: true,
       analysis: {
         matchScore: 94,
+        atsScore: 97,
         matchCategory: 'EXCELLENT MATCH',
+        verdictRating: '★★★★★ Excellent Fit',
+        recommendedAction: 'INTERVIEW CANDIDATE',
         summary: `Rudraksha C. Jadhav brings full-stack development experience across Next.js 15, React, Flutter, Node.js, and Java/Android that closely aligns with your technical requirements.`,
-        matchingSkills: ['React.js & Next.js 15', 'Flutter & Dart', 'Node.js & Express REST APIs', 'MongoDB & State Management'],
+        strengths: ['Full-Stack Web & Mobile Architecture', 'Flutter & Riverpod State Management', 'AI/LLM API Integration', 'Production 4-Project Portfolio'],
+        matchingSkills: ['React.js', 'Next.js 15', 'TypeScript', 'Flutter & Dart', 'Node.js & Express', 'MongoDB'],
+        missingSkills: ['Docker & Containerization', 'AWS Cloud Services'],
         matchingProjects: [
-          { title: 'DisasterLink Platform', reason: 'Demonstrates Next.js 15, TypeScript, Zustand, and real-time dashboard engineering.' },
-          { title: 'Collections App', reason: 'Highlights cross-platform Flutter/Dart mobile development with Riverpod and Node.js REST APIs.' }
+          { title: 'CarbonLens Platform', score: 95, reason: 'Demonstrates React, Node.js, MongoDB, Chart.js & AI APIs.' },
+          { title: 'Collections App', score: 92, reason: 'Highlights cross-platform Flutter/Dart development with Riverpod and Express REST APIs.' },
+          { title: 'DisasterLink Platform', score: 89, reason: 'Government-grade Next.js 15 emergency management command dashboard.' }
         ],
-        tailoredPitch: `With 4 production-grade projects spanning web dashboards, native mobile apps, and AI platforms—backed by 7 Google & Meta certifications—I am ready to deliver high-impact engineering solutions for your team.`
+        interviewQuestions: [
+          { question: 'How do you manage complex state in Next.js 15 vs Flutter apps?', answer: 'In Next.js 15, I utilize Zustand for global state. In Flutter, I leverage Riverpod StateNotifiers for declarative reactive state binding.' },
+          { question: 'Describe your experience building AI-integrated web applications.', answer: 'In CarbonLens, I connected OpenAI/LLM API endpoints with Node.js controllers to compute real-time carbon mitigation recommendations.' },
+          { question: 'How do you ensure 100% visual responsiveness across mobile and web viewports?', answer: 'I perform DevTools responsive testing across 4 viewports, enforcing ARIA accessibility and Tailwind CSS utilities.' }
+        ],
+        salaryBenchmark: { typical: '₹8–14 LPA', marketDemand: 'Very High', competition: 'Medium' },
+        hiringProbability: { recruiterInterest: '🔥🔥🔥🔥☆', likelyInterview: '89%', likelyShortlist: '91%' },
+        tailoredPitch: `Based on your job requirements, my experience building Next.js 15 emergency platforms, Flutter mobile apps, and AI tools makes me an immediate high-impact addition to your engineering team.`,
+        coverLetter: `Dear Hiring Manager,\n\nI am writing to express my strong interest in your Software Engineer position. Having built production platforms with Next.js 15, Flutter, Node.js, and MongoDB—backed by 7 verified Google and Meta certifications—I bring the end-to-end technical capabilities required to deliver scale from Day 1.\n\nSincerely,\nRudraksha C. Jadhav`,
+        linkedinMessage: `Hi! I noticed your opening for a Software Engineer. My background spans Next.js 15, Flutter, Node.js, and AI integrations with 4 production projects. Would love to share my portfolio: https://github.com/rudraksha-jadhav`,
+        suggestedPath: ['Projects Section', 'CarbonLens AI App', 'Collections Flutter App', 'Full Resume PDF']
       },
       poweredBy: 'RUDY AI (Client Fallback)',
     });
