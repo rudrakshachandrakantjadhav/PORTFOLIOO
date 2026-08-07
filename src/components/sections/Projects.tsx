@@ -6,13 +6,15 @@ import { Project } from '@/types';
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll';
 import { GithubIcon } from '@/components/ui/icons';
 import { CodePlaygroundModal } from '@/components/ui/CodePlaygroundModal';
+import { ArchitectureDiagramModal } from '@/components/ui/ArchitectureDiagramModal';
 import { useSoundFX } from '@/components/providers/SoundProvider';
-import { ArrowUpRight, Code2, X, Check, Image as ImageIcon } from 'lucide-react';
+import { ArrowUpRight, Code2, X, Check, Image as ImageIcon, Layers } from 'lucide-react';
 import Image from 'next/image';
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCodeProjectId, setActiveCodeProjectId] = useState<string | null>(null);
+  const [activeArchProjectId, setActiveArchProjectId] = useState<string | null>(null);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const { playClick, playHover } = useSoundFX();
 
@@ -120,6 +122,19 @@ export function Projects() {
                     >
                       <span>CASE STUDY & GALLERY</span>
                       <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+                    </button>
+
+                    <button
+                      onMouseEnter={playHover}
+                      onClick={() => {
+                        playClick();
+                        setActiveArchProjectId(project.slug);
+                      }}
+                      className="bg-[#8BFFB0] text-[#111111] px-3.5 py-2.5 font-display font-black text-xs border-2 border-[#111111] hover:bg-white transition-all flex items-center gap-1.5 neo-shadow-premium cursor-pointer"
+                      title="View System Architecture Flow Diagram"
+                    >
+                      <Layers className="w-4 h-4 stroke-[2.5]" />
+                      <span>ARCHITECTURE</span>
                     </button>
 
                     <button
@@ -268,6 +283,20 @@ export function Projects() {
                   playClick();
                   const slug = selectedProject.slug;
                   setSelectedProject(null);
+                  setActiveArchProjectId(slug);
+                }}
+                className="px-6 py-3 bg-[#8BFFB0] text-[#111111] border-4 border-[#111111] font-display font-black text-sm neo-shadow-premium hover:bg-white transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <Layers className="w-5 h-5 stroke-[2.5]" />
+                <span>VIEW ARCHITECTURE DIAGRAM</span>
+              </button>
+
+              <button
+                onMouseEnter={playHover}
+                onClick={() => {
+                  playClick();
+                  const slug = selectedProject.slug;
+                  setSelectedProject(null);
                   setActiveCodeProjectId(slug);
                 }}
                 className="px-6 py-3 bg-[#FFD54F] text-[#111111] border-4 border-[#111111] font-display font-black text-sm neo-shadow-premium hover:bg-white transition-all flex items-center gap-2 cursor-pointer"
@@ -292,6 +321,15 @@ export function Projects() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Visual Architecture Diagram Modal */}
+      {activeArchProjectId && (
+        <ArchitectureDiagramModal
+          isOpen={!!activeArchProjectId}
+          onClose={() => setActiveArchProjectId(null)}
+          projectSlug={activeArchProjectId}
+        />
       )}
 
       {/* Code Snippet Playground Modal */}
