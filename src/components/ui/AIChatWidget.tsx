@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, X, Send, Sparkles, User, Minimize2, Trash2, Cpu } from 'lucide-react';
+import { Bot, X, Send, Sparkles, User, Minimize2, Trash2 } from 'lucide-react';
 import { useSoundFX } from '@/components/providers/SoundProvider';
 
 interface Message {
@@ -16,7 +16,6 @@ export function AIChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [poweredByBadge, setPoweredByBadge] = useState('Gemini 3.1 Flash Lite');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { playClick, playHover, playSuccess } = useSoundFX();
 
@@ -25,7 +24,7 @@ export function AIChatWidget() {
     const initialMsg: Message = {
       id: 'welcome',
       sender: 'ai',
-      text: "👋 Hi! I'm **RUDY AI**, powered by **Google Gemini 3.1 Flash Lite**.\n\nAsk me anything about Rudraksha's experience, 4 flagship projects, 7 verified certifications, or technical stack!",
+      text: "👋 Hi! I'm **RUDY AI**, your intelligent portfolio guide.\n\nAsk me anything about Rudraksha's experience, 4 flagship projects, 7 verified certifications, or technical stack!",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
@@ -75,7 +74,7 @@ export function AIChatWidget() {
   };
 
   const quickPrompts = [
-    '🤖 Ask Gemini 3.1 about DisasterLink',
+    '🤖 Ask about DisasterLink',
     '🛍️ Tell me about Collections App',
     '🌱 What is CarbonLens?',
     '🌿 Tell me about Terralife Android App',
@@ -113,7 +112,6 @@ export function AIChatWidget() {
 
       const data = await res.json();
       const replyText = data.reply || "I am here to answer any question about Rudraksha's portfolio!";
-      if (data.poweredBy) setPoweredByBadge(data.poweredBy);
 
       const aiMsg: Message = {
         id: (Date.now() + 1).toString(),
@@ -148,14 +146,14 @@ export function AIChatWidget() {
             playClick();
             setIsOpen(true);
           }}
-          className="group relative flex items-center gap-3 bg-[#111111] text-white px-5 py-4 border-4 border-[#111111] neo-shadow-hard hover:bg-[#4F8EFF] hover:text-[#111111] transition-all cursor-pointer"
+          className="group relative flex items-center gap-3 bg-[#111111] text-white px-5 py-4 border-4 border-[#111111] neo-shadow-hard hover:bg-[#FFD54F] hover:text-[#111111] transition-all cursor-pointer"
         >
           <div className="relative">
-            <Bot className="w-6 h-6 stroke-[2.5]" />
+            <Bot className="w-6 h-6 stroke-[2.5] text-[#FFD54F] group-hover:text-[#111111]" />
             <span className="absolute -top-1 -right-1 w-3 h-3 bg-[#8BFFB0] rounded-full border-2 border-[#111111] animate-ping" />
           </div>
           <span className="font-display font-black text-sm uppercase tracking-wider">RUDY AI</span>
-          <Sparkles className="w-4 h-4 text-[#FFD54F] group-hover:rotate-12 transition-transform" />
+          <Sparkles className="w-4 h-4 text-[#FFD54F] group-hover:text-[#111111] group-hover:rotate-12 transition-transform" />
         </button>
       )}
 
@@ -170,22 +168,17 @@ export function AIChatWidget() {
           {/* Header */}
           <div className="bg-[#111111] text-white p-4 border-b-4 border-[#111111] flex justify-between items-center shrink-0">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-[#4F8EFF] text-[#111111] border-2 border-white font-bold">
+              {/* Yellow Bot Icon Avatar Container */}
+              <div className="p-2 bg-[#FFD54F] text-[#111111] border-2 border-white font-bold">
                 <Bot className="w-5 h-5 stroke-[2.5]" />
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="font-display font-black text-base text-white tracking-tight">
-                    RUDY AI
-                  </h3>
-                  <span className="px-2 py-0.5 bg-[#8BFFB0] text-[#111111] font-mono text-[9px] font-black uppercase border border-white">
-                    GEMINI 3.1 LITE
-                  </span>
-                </div>
-                <div className="flex items-center gap-1 font-mono text-[10px] text-white/70">
-                  <Cpu className="w-3 h-3 text-[#FFD54F]" />
-                  <span>Powered by Google {poweredByBadge}</span>
-                </div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-display font-black text-base text-white tracking-tight">
+                  RUDY AI
+                </h3>
+                <span className="px-2 py-0.5 bg-[#8BFFB0] text-[#111111] font-mono text-[9px] font-black uppercase border border-white">
+                  GEMINI 3.1 LITE
+                </span>
               </div>
             </div>
 
@@ -193,7 +186,7 @@ export function AIChatWidget() {
               <button
                 onMouseEnter={playHover}
                 onClick={handleClearHistory}
-                className="p-1.5 text-white/80 hover:text-[#FF8A8A] transition-colors"
+                className="p-1.5 text-white/80 hover:text-[#FF8A8A] transition-colors cursor-pointer"
                 title="Clear Chat History"
               >
                 <Trash2 className="w-4 h-4" />
@@ -204,7 +197,7 @@ export function AIChatWidget() {
                   playClick();
                   setIsOpen(false);
                 }}
-                className="p-1.5 text-white/80 hover:text-white transition-colors"
+                className="p-1.5 text-white/80 hover:text-white transition-colors cursor-pointer"
                 title="Minimize Chat"
               >
                 <Minimize2 className="w-4 h-4" />
@@ -233,8 +226,8 @@ export function AIChatWidget() {
                 className={`flex gap-3 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {msg.sender === 'ai' && (
-                  <div className="w-7 h-7 bg-[#4F8EFF] border-2 border-[#111111] text-[#111111] flex items-center justify-center shrink-0 font-bold text-xs">
-                    <Bot className="w-4 h-4" />
+                  <div className="w-7 h-7 bg-[#FFD54F] border-2 border-[#111111] text-[#111111] flex items-center justify-center shrink-0 font-bold text-xs">
+                    <Bot className="w-4 h-4 stroke-[2.5]" />
                   </div>
                 )}
 
@@ -261,12 +254,12 @@ export function AIChatWidget() {
 
             {isTyping && (
               <div className="flex gap-3 justify-start items-center">
-                <div className="w-7 h-7 bg-[#4F8EFF] border-2 border-[#111111] text-[#111111] flex items-center justify-center shrink-0 font-bold text-xs">
-                  <Bot className="w-4 h-4 animate-bounce" />
+                <div className="w-7 h-7 bg-[#FFD54F] border-2 border-[#111111] text-[#111111] flex items-center justify-center shrink-0 font-bold text-xs">
+                  <Bot className="w-4 h-4 stroke-[2.5] animate-bounce" />
                 </div>
                 <div className="p-3 bg-white border-2 border-[#111111] font-mono text-xs font-bold flex items-center gap-2">
-                  <span className="w-2 h-2 bg-[#4F8EFF] rounded-full animate-ping" />
-                  <span>Gemini 3.1 Flash Lite thinking...</span>
+                  <span className="w-2 h-2 bg-[#FFD54F] rounded-full animate-ping" />
+                  <span>RUDY AI thinking...</span>
                 </div>
               </div>
             )}
@@ -285,13 +278,13 @@ export function AIChatWidget() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Gemini 3.1 Flash Lite about Rudraksha..."
-              className="flex-1 px-3 py-2 bg-[#FFF9F0] border-2 border-[#111111] font-sans font-bold text-xs text-[#111111] placeholder:text-[#111111]/40 outline-none focus:border-[#4F8EFF]"
+              placeholder="Ask RUDY AI about Rudraksha..."
+              className="flex-1 px-3 py-2 bg-[#FFF9F0] border-2 border-[#111111] font-sans font-bold text-xs text-[#111111] placeholder:text-[#111111]/40 outline-none focus:border-[#FFD54F]"
             />
             <button
               type="submit"
               disabled={isTyping || !input.trim()}
-              className="p-2 bg-[#111111] text-white border-2 border-[#111111] hover:bg-[#4F8EFF] hover:text-[#111111] transition-colors disabled:opacity-50 cursor-pointer"
+              className="p-2 bg-[#111111] text-white border-2 border-[#111111] hover:bg-[#FFD54F] hover:text-[#111111] transition-colors disabled:opacity-50 cursor-pointer"
             >
               <Send className="w-4 h-4 stroke-[2.5]" />
             </button>
