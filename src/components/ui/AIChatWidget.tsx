@@ -154,7 +154,7 @@ export function AIChatWidget() {
             <Bot className="w-6 h-6 stroke-[2.5]" />
             <span className="absolute -top-1 -right-1 w-3 h-3 bg-[#8BFFB0] rounded-full border-2 border-[#111111] animate-ping" />
           </div>
-          <span className="font-display font-black text-sm uppercase tracking-wider">ASK GEMINI 3.1 AI</span>
+          <span className="font-display font-black text-sm uppercase tracking-wider">RUDY AI</span>
           <Sparkles className="w-4 h-4 text-[#FFD54F] group-hover:rotate-12 transition-transform" />
         </button>
       )}
