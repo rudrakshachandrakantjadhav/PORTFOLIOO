@@ -16,7 +16,7 @@ export function AIChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [poweredByBadge, setPoweredByBadge] = useState('Gemini 2.5 Flash');
+  const [poweredByBadge, setPoweredByBadge] = useState('Gemini Flash Lite');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { playClick, playHover, playSuccess } = useSoundFX();
 
@@ -25,7 +25,7 @@ export function AIChatWidget() {
     const initialMsg: Message = {
       id: 'welcome',
       sender: 'ai',
-      text: "👋 Hi! I'm **RUDY AI**, powered by **Google Gemini 2.5 Flash**.\n\nAsk me anything about Rudraksha's experience, 4 flagship projects, 7 verified certifications, or technical stack!",
+      text: "👋 Hi! I'm **RUDY AI**, powered by **Google Gemini Flash Lite**.\n\nAsk me anything about Rudraksha's experience, 4 flagship projects, 7 verified certifications, or technical stack!",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
@@ -179,12 +179,12 @@ export function AIChatWidget() {
                     RUDY AI
                   </h3>
                   <span className="px-2 py-0.5 bg-[#8BFFB0] text-[#111111] font-mono text-[9px] font-black uppercase border border-white">
-                    LIVE GEMINI AI
+                    LIVE GEMINI LITE
                   </span>
                 </div>
                 <div className="flex items-center gap-1 font-mono text-[10px] text-white/70">
                   <Cpu className="w-3 h-3 text-[#FFD54F]" />
-                  <span>Powered by Google Gemini 2.5 Flash</span>
+                  <span>Powered by Google {poweredByBadge}</span>
                 </div>
               </div>
             </div>
@@ -266,7 +266,7 @@ export function AIChatWidget() {
                 </div>
                 <div className="p-3 bg-white border-2 border-[#111111] font-mono text-xs font-bold flex items-center gap-2">
                   <span className="w-2 h-2 bg-[#4F8EFF] rounded-full animate-ping" />
-                  <span>Gemini AI thinking...</span>
+                  <span>Gemini Flash Lite thinking...</span>
                 </div>
               </div>
             )}
@@ -285,7 +285,7 @@ export function AIChatWidget() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Gemini about Rudraksha..."
+              placeholder="Ask Gemini Flash Lite about Rudraksha..."
               className="flex-1 px-3 py-2 bg-[#FFF9F0] border-2 border-[#111111] font-sans font-bold text-xs text-[#111111] placeholder:text-[#111111]/40 outline-none focus:border-[#4F8EFF]"
             />
             <button

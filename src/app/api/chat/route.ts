@@ -60,31 +60,42 @@ export async function POST(req: Request) {
 
     const apiKey = process.env.GEMINI_API_KEY;
 
-    // If GEMINI_API_KEY is available, invoke Google Gemini 2.5 Flash model
     if (apiKey) {
       const ai = new GoogleGenAI({ apiKey });
 
-      // Transform history into contents format expected by Gemini SDK
       const contents = messages.map((m: { sender: string; text: string }) => ({
         role: m.sender === 'user' ? 'user' : 'model',
         parts: [{ text: m.text }],
       }));
 
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents,
-        config: {
-          systemInstruction: SYSTEM_INSTRUCTION,
-          temperature: 0.7,
-          maxOutputTokens: 500,
-        },
-      });
+      // Candidate Flash Lite models to try in sequence
+      const modelsToTry = ['gemini-2.5-flash-lite', 'gemini-2.0-flash-lite', 'gemini-2.5-flash'];
 
-      const replyText = response.text || 'I am ready to assist you with any details regarding Rudraksha!';
-      return NextResponse.json({ reply: replyText, poweredBy: 'Gemini 2.5 Flash' });
+      for (const modelName of modelsToTry) {
+        try {
+          const response = await ai.models.generateContent({
+            model: modelName,
+            contents,
+            config: {
+              systemInstruction: SYSTEM_INSTRUCTION,
+              temperature: 0.7,
+              maxOutputTokens: 500,
+            },
+          });
+
+          if (response.text) {
+            return NextResponse.json({
+              reply: response.text,
+              poweredBy: `Gemini Flash Lite (${modelName})`,
+            });
+          }
+        } catch (modelErr) {
+          console.warn(`Model ${modelName} call failed, trying fallback model...`, modelErr);
+        }
+      }
     }
 
-    // Fallback if no API key configured on environment: return formatted resume assistant response
+    // Fallback if no API key configured or all models failed
     const lastUserMsg = messages[messages.length - 1]?.text || '';
     const fallbackReply = generateFallbackResponse(lastUserMsg);
 
