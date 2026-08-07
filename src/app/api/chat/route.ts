@@ -68,8 +68,14 @@ export async function POST(req: Request) {
         parts: [{ text: m.text }],
       }));
 
-      // Candidate Flash Lite models to try in sequence
-      const modelsToTry = ['gemini-2.5-flash-lite', 'gemini-2.0-flash-lite', 'gemini-2.5-flash'];
+      // Candidate models to try in sequence: starting with Gemini 3.1 Flash Lite
+      const modelsToTry = [
+        'gemini-3.1-flash-lite',
+        'gemini-3.0-flash-lite',
+        'gemini-2.5-flash-lite',
+        'gemini-2.0-flash-lite',
+        'gemini-2.5-flash',
+      ];
 
       for (const modelName of modelsToTry) {
         try {
@@ -86,11 +92,11 @@ export async function POST(req: Request) {
           if (response.text) {
             return NextResponse.json({
               reply: response.text,
-              poweredBy: `Gemini Flash Lite (${modelName})`,
+              poweredBy: `Gemini 3.1 Flash Lite (${modelName})`,
             });
           }
         } catch (modelErr) {
-          console.warn(`Model ${modelName} call failed, trying fallback model...`, modelErr);
+          console.warn(`Model ${modelName} call failed, trying next candidate...`, modelErr);
         }
       }
     }
