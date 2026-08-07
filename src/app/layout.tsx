@@ -30,24 +30,49 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'RUDRAKSHA JADHAV | Senior Software Engineer & AI Specialist',
-  description: 'Portfolio of Rudraksha Jadhav — Building scalable web applications, AI-powered solutions, and modern digital experiences with technical precision.',
-  keywords: ['Rudraksha Jadhav', 'Software Engineer', 'Full Stack Developer', 'AI Engineer', 'Next.js', 'React', 'TypeScript', 'Portfolio'],
-  authors: [{ name: 'Rudraksha Jadhav' }],
-  creator: 'Rudraksha Jadhav',
+  metadataBase: new URL('https://github.com/rudraksha-jadhav/PORTFOLIOO'),
+  title: 'RUDRAKSHA C. JADHAV | Software Engineer & AI Specialist',
+  description: 'Official Portfolio of Rudraksha C. Jadhav — Software Engineer skilled in Flutter, React.js, Next.js 15, Node.js, Express, MongoDB, Java/Android, and Gemini AI API integrations.',
+  keywords: [
+    'Rudraksha Jadhav',
+    'Software Engineer',
+    'Full Stack Developer',
+    'Flutter Developer',
+    'React Developer',
+    'Next.js 15',
+    'AI Engineer',
+    'Gemini AI',
+    'Portfolio'
+  ],
+  authors: [{ name: 'Rudraksha C. Jadhav' }],
+  creator: 'Rudraksha C. Jadhav',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://rudraksha.dev',
-    title: 'RUDRAKSHA JADHAV | Senior Software Engineer & AI Specialist',
-    description: 'Building scalable web applications, AI-powered solutions, and modern digital experiences.',
-    siteName: 'Rudraksha Jadhav Portfolio',
+    url: 'https://github.com/rudraksha-jadhav/PORTFOLIOO',
+    title: 'RUDRAKSHA C. JADHAV | Software Engineer & AI Specialist',
+    description: 'Building government-grade emergency platforms, AI-powered sustainability tools, and native cross-platform mobile applications.',
+    siteName: 'Rudraksha C. Jadhav Portfolio',
+    images: [
+      {
+        url: '/rudraksha.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Rudraksha C. Jadhav Software Engineer Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RUDRAKSHA JADHAV | Senior Software Engineer & AI Specialist',
-    description: 'Building scalable web applications, AI-powered solutions, and modern digital experiences.',
-    creator: '@rudraksha',
+    title: 'RUDRAKSHA C. JADHAV | Software Engineer & AI Specialist',
+    description: 'Building government-grade emergency platforms, AI-powered tools, and Flutter mobile applications.',
+    images: ['/rudraksha.jpg'],
+    creator: '@rudrakshajadhav',
   },
   robots: {
     index: true,
